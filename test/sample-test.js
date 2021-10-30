@@ -1,19 +1,38 @@
-const { expect } = require("chai");
-const { ethers } = require("hardhat");
+const { expect } = require('chai');
+const { ethers } = require('hardhat');
 
-describe("Greeter", function () {
-  it("Should return the new greeting once it's changed", async function () {
-    const Greeter = await ethers.getContractFactory("Greeter");
-    const greeter = await Greeter.deploy("Hello, world!");
-    await greeter.deployed();
+describe('Addition', function () {
+	it('Should return addition of two numbers', async function () {
+		const Greeter = await ethers.getContractFactory('Greeter');
+		const greeter = await Greeter.deploy(4, 2);
+		await greeter.deployed();
+		expect(await greeter.addition()).to.equal(6);
+	});
+});
 
-    expect(await greeter.greet()).to.equal("Hello, world!");
+describe('Subtraction', function () {
+	it('Should return subtraction of two numbers', async function () {
+		const Greeter = await ethers.getContractFactory('Greeter');
+		const greeter = await Greeter.deploy(4, 2);
+		await greeter.deployed();
+		expect(await greeter.subtraction()).to.equal(2);
+	});
+});
 
-    const setGreetingTx = await greeter.setGreeting("Hola, mundo!");
+describe('Multiplication', function () {
+	it('Should return subtraction of two numbers', async function () {
+		const Greeter = await ethers.getContractFactory('Greeter');
+		const greeter = await Greeter.deploy(4, 2);
+		await greeter.deployed();
+		expect(await greeter.multiplication()).to.equal(8);
+	});
+});
 
-    // wait until the transaction is mined
-    await setGreetingTx.wait();
-
-    expect(await greeter.greet()).to.equal("Hola, mundo!");
-  });
+describe('Division', function () {
+	it('Should return subtraction of two numbers', async function () {
+		const Greeter = await ethers.getContractFactory('Greeter');
+		const greeter = await Greeter.deploy(4, 2);
+		await greeter.deployed();
+		expect(await greeter.division()).to.equal(2);
+	});
 });
